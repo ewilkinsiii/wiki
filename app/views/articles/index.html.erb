@@ -1,1 +1,8 @@
 <h1>Articles</h1>
+
+<% @articles.each do |article|%>
+  <h2><%= article.name %></h2>
+  <h4><%= article.description %></h4>
+  <p><%= article.body %></p>
+  Created by: <%= article.user.email %>
+<%end%>

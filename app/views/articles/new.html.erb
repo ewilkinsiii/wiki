@@ -1,0 +1,8 @@
+<div class="col-sm-8 blog-main">
+  <h1>Create New Article</h1>
+  
+  <%= render 'form', article: @article %>
+  
+  <%= link_to 'Show', @article, class: "btn btn-success" %> |
+  <%= link_to 'Back', articles_path, class: "btn btn-primary" %>
+</div>
