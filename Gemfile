@@ -27,6 +27,7 @@ gem 'gritter', '~> 1.2'
 gem 'redcarpet', '~> 3.4'
 gem 'pygments.rb', '~> 1.2', '>= 1.2.1'
 gem 'md_simple_editor', '~> 0.3.0'
+gem 'acts_as_paranoid', '~> 0.6.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -37,6 +38,9 @@ gem 'md_simple_editor', '~> 0.3.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'pry', '~> 0.11.3'
+  gem 'pry-byebug', '~> 3.6'
+  gem 'awesome_print', '~> 1.8'
 end
 
 group :development do

@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+  acts_as_paranoid
   enum status: { draft: 0, published: 1 }
   extend FriendlyId
   friendly_id :name, use: :slugged
