@@ -1,1 +1,28 @@
 @import "bootstrap";
+@import "gritter";
+@import "font-awesome";
+
+.category-box{
+  margin-bottom: 1em;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+.category-title{
+  text-align: center;
+  padding-top: .5em;
+}
+.btn-send
+{
+	border-radius: 0px;
+	border:1px solid #fff;
+	background:#A020F0;
+	color:#fff; 
+}
+
+.btn-send:hover
+{
+	border:1px solid #A020F0;
+	background:#fff;
+	color:#A020F0;
+	transition:background 0.5s;   
+}

@@ -1,8 +1,18 @@
 <h1>Articles</h1>
 
+<div class="row">
+  <% @categories.each do |category|%>
+    <div class="col-md-4">
+      <div class="card category-box">
+        <%=link_to "#{category.name.capitalize}", category_article_path(:category_name => "#{category.name}"), class: "btn btn-lg btn-send"%> 
+      </div>
+    </div>
+  <%end%>
+</div>
+
 <% @articles.each do |article|%>
   <h2><%= article.name %></h2>
   <h4><%= article.description %></h4>
-  <p><%= article.body %></p>
+  <p><%= markdown article.body %></p>
   Created by: <%= article.user.email %>
 <%end%>

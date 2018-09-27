@@ -13,5 +13,7 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
+//= require gritter
 //= require turbolinks
+//= require md_simple_editor
 //= require_tree .

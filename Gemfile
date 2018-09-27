@@ -21,6 +21,12 @@ gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 gem 'mini_racer', '~> 0.2.0'
 gem 'friendly_id', '~> 5.2', '>= 5.2.4'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
+gem 'gritter', '~> 1.2'
+gem 'redcarpet', '~> 3.4'
+gem 'pygments.rb', '~> 1.2', '>= 1.2.1'
+gem 'md_simple_editor', '~> 0.3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

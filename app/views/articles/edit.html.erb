@@ -1,0 +1,8 @@
+<div class="col-sm-8 blog-main">
+  <h1>Edit Article</h1>
+  
+  <%= render 'form', {category: @category, article: @article}  %>
+  
+  <%= link_to 'Show', category_article_path(@category, @article), class: "btn btn-success" %> |
+  <%= link_to 'Back', category_path(@category), class: "btn btn-primary" %>
+</div>

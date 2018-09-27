@@ -1,3 +1,5 @@
 class Category < ApplicationRecord
-  belongs_to :article
+  has_many :articles
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end

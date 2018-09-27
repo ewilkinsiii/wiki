@@ -1,0 +1,5 @@
+<% @articles.each do |article|%>
+  <h2><%= link_to article.name, category_article_path(@category, article) %></h2>
+  <h4><%= article.description %></h4>
+  Created by: <%= article.user.email %>
+<%end%>
