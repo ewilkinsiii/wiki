@@ -1,6 +1,7 @@
 <%= form_for([category, article]) do |f| %>
   <% if article.errors.any? %>
     <% article.errors.full_messages.each do |error| %>
+      <%= alert_generator error%>
     <%end%>
   <% end %>
   
