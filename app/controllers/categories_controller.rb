@@ -1,9 +1,17 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
+  
+  def search
+    if params[:search]
+      @articles = Article.page.where('name ILIKE ?', "%" + params[:search] + "%" ).where(category_id: params[:category_id]).per(5).latest
+    end 
+  end
   
   def index
     @categories = Category.all
+    @recent_articles = Article.order(created_at: :desc).limit(5) 
+    @popular_articles = Article.order(impressions_count: :desc).limit(5)
     
     case
       when params[:category]

@@ -1,0 +1,10 @@
+<aside class="widget widget_search">
+  <%= form_tag search_category_articles_path, method: :get, class: "navbar-form navbar-center", role: "search" do %>
+      <p>
+    <%=text_field_tag :search, params[:search], class: "form-control", placeholder: "Hit enter to search..." %>
+    <%= button_tag("Search", name: nil, class: "search-button") do%>
+      <%= fa_icon "search"%>
+    <%end%>
+    </p>
+ <%end%>   
+</aside>

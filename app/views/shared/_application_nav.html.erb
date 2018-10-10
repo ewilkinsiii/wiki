@@ -1,0 +1,38 @@
+<nav class="uk-navbar-container uk-margin uk-navbar-transparent uk-light">
+    <div class="uk-container">
+      <div uk-navbar>
+        <div class="uk-navbar-left">
+          <%= link_to "KnowledgeBase", categories_path, class:"uk-navbar-item uk-logo uk-text-uppercase uk-margin-small-right" %>
+        </div>
+          <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav uk-text-uppercase uk-visible@m uk-margin-medium-left">
+            <li><%= link_to "Home", categories_path%></li>
+            <li>
+              <li><a href="faq.html">Categories</a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <% Category.all.each do |category|%>
+                      <li><%= link_to category.name, category_path(category) %></li>
+                    <%end%>
+                  </ul>
+                </div> 
+              </li>
+              <% if !(current_page?(categories_path))%>
+                <% if !(current_page?(root_path))%>
+                  <% if  !(current_page?(myarticles_path)) && @category.present? %>
+                    <li><%= link_to "Create New Article", new_category_article_path(@category) %></li>
+                  <%end%>
+                <%end%>
+              <%end%>
+            <% if current_user %>
+              <li><%= link_to "My Articles", myarticles_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <%else%>
+              <li><%= link_to  "Login", new_user_session_path %></li>
+            <%end%>
+          </ul>
+          <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" uk-navbar-toggle-icon uk-toggle></a>
+        </div>
+      </div>
+    </div>
+</nav>
