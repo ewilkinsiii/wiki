@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :articles do
       collection do
   		  get 'search'
+  		  get :deleted
   	  end
   	  resources :versions, only: [:destroy] do
          member do
@@ -17,6 +18,12 @@ Rails.application.routes.draw do
           patch :rollback, to: 'versions#rollback'
         end
       end
+    end
+  end
+  
+  resources :versions, only: [] do
+    member do
+      patch :bringback  # <= and that
     end
   end
   root to: "categories#index"

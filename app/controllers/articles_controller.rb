@@ -65,6 +65,10 @@ class ArticlesController < ApplicationController
     end
   end
   
+  def deleted
+    @articles = Version.where(event: 'destroy')
+  end
+  
   private
   
   def set_category
