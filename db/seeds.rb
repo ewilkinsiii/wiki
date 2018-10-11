@@ -10,6 +10,17 @@ category_list.each do |name|
   Category.create!(name: name)
 end
 
+puts "5 Categories created"
+
+User.create!(email: "test@test.com",
+            password: "asdfasdf",
+            password_confirmation: "asdfasdf",
+            first_name: "Test",
+            last_name: "User"
+             )
+
+puts "1 Users created"
+
 10.times do |article|
   Article.create!(
     name: "My Article Post " + article.to_s,

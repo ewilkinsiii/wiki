@@ -1,0 +1,36 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Deleted by</th>
+      <th>At</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article_version| %>
+      <%- article = article_version.reify %>
+      <tr>
+        <td><%= article.id %></td>
+        <td><%= article.name %></td>
+        <td><%= article.description %></td>
+        <td><%= find_version_author_name(article_version) %></td>
+        <td><%= article.created_at %></td>
+        <td><%= link_to 'Bringback', bringback_version_path(article_version), method: 'PATCH' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Back', category_articles_path(@category, @article) %>
+ 
+
+And finally, a link to access this view!
+
+
+...
+<%= link_to 'See Deleted Articles',  deleted_category_articles_path(@category, @article) %>
+<br/>
+<%= link_to 'New Article', new_category_article_path(@category, @article) %>

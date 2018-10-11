@@ -1,8 +1,116 @@
-<h2><%= @article.name %></h2>
-<h4><%= @article.description %></h4>
-<p><%= markdown @article.body %></p>
-Created by: <%= @article.user.email %>
-<%= distance_of_time_in_words(@article.created_at, Time.now)%> days ago
-<%= link_to fa_icon("pencil-square-o"), edit_category_article_path(@category, @article), class: "edit" %>
-<%= link_to fa_icon("trash"), category_article_path(@category, @article), method: :delete, data: {confirm: "Are you sure you want ro delete this post"}, class: "trash" %>
-<%= link_to 'Back', category_path(@category), class: "btn btn-primary" %>
+<div class="uk-section section-sub-nav uk-padding-remove">
+  <div class="uk-container">
+    <div uk-grid>
+      <div class="uk-width-2-3@m">
+        <ul class="uk-breadcrumb uk-visible@m">
+          <li><%= link_to "Home", root_path %> </li>
+          <li><%= link_to @category.name.capitalize, category_path(@category)%></li>
+          <li><span><%= link_to @article.name, category_article_path(@category, @article)%></span></li>
+        </ul>
+      </div>
+      <%= render 'searchbar' %>
+    <div class="border-top"></div>
+  </div>
+</div>
+
+<div class="uk-section">
+  <div class="uk-container">
+
+    <h2><%= @article.name %></h2>
+    <h4><%= @article.description %></h4>
+    <p><%= markdown @article.body %></p>
+    Created By: <%= @article.user.name %>
+    <%= distance_of_time_in_words(@article.created_at, Time.now)%> days ago
+    <br>Updated <%= distance_of_time_in_words(@article.updated_at, Time.now)%> days ago
+    <%= link_to fa_icon("pencil-square-o"), edit_category_article_path(@category, @article), class: "edit", style: "color: #12B629" %>
+    <%= link_to fa_icon("trash"), category_article_path(@category, @article), method: :delete, data: {confirm: "Are you sure you want ro delete this post"}, class: "trash", style: "color: red" %>
+    <a href="#" class="uk-button uk-button-outline-primary uk-button-small uk-visible@m">Follow</a>      
+    
+    
+    <%= @versions.length  %> Versions Created
+    <ul>
+      
+    <h2>Previous Versions</h2>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Date</th>
+      <th>Author</th>
+      <th>Event</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= version.index %></td>
+        <td><%= version.created_at %></td>
+        <td><%= find_version_author_name(version) %></td>
+        <td><%= version.event.humanize %></td>
+        <td><%= link_to 'Diff',  diff_category_article_version_path(@category, @article, version) %></td>
+        <td><%= link_to 'Rollback', rollback_category_article_version_path(@category, @article, version), method: 'PATCH' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div class="uk-margin-medium-top border-top padding-top">
+  <h3 class="uk-margin-medium-bottom">Comments</h3>
+  <ul class="uk-comment-list">
+    <li>
+      <article class="uk-comment uk-visible-toggle">
+        <header class="uk-comment-header uk-position-relative">
+          <div class="uk-grid-medium uk-flex-middle" uk-grid>
+            <div class="uk-width-auto">
+              <img class="uk-comment-avatar uk-border-circle" src="http://www.valleyroadwines.com/wp-content/uploads/2013/04/Anon-Person-300x300.png" width="70" height="70" alt="">
+            </div>
+            <div class="uk-width-expand">
+              <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Ashley Winslow</a></h4>
+              <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+            </div>
+          </div>
+          <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+        </header>
+        <div class="uk-comment-body">
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+      </article>
+    </li>
+
+    <div class="reply uk-margin-medium-top border-top padding-top">
+      <h3 class="uk-margin-medium-bottom">Leave a Comment</h3>
+      <form>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="First Name">
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="Last Name">
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Enter comment here ...."></textarea>
+            </div>
+          </div>
+        </div>
+        
+        <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-auto@s">Submit</button>
+      </form>
+    </div>
+ </div>
+</div>

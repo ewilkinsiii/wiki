@@ -1,7 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :set_category
+  before_action :set_paper_trail_whodunnit
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
+  impressionist actions: [:show], unique: [:session_hash]
+  
+  def search
+    if params[:search]
+      @articles = Article.page.where('name ILIKE ?', "%" + params[:search] + "%" ).where(category_id: @category.id).per(5).latest
+    end 
+  end
   
   def index
     @categories = Category.all
@@ -18,6 +26,8 @@ class ArticlesController < ApplicationController
   end
   
   def show
+     impressionist(@article, "message...")
+     @versions =@article.versions.order('created_at DESC')
   end
   
   def new
@@ -53,6 +63,10 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to category_path(@category), notice: 'Article was Removed.' }
     end
+  end
+  
+  def deleted
+    @articles = Version.where(event: 'destroy')
   end
   
   private

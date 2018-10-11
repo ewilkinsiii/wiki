@@ -28,6 +28,11 @@ gem 'redcarpet', '~> 3.4'
 gem 'pygments.rb', '~> 1.2', '>= 1.2.1'
 gem 'md_simple_editor', '~> 0.3.0'
 gem 'acts_as_paranoid', '~> 0.6.0'
+gem 'impressionist', '~> 1.6', '>= 1.6.1'
+gem 'rails_admin', '~> 1.4', '>= 1.4.2'
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
+gem 'paper_trail', '~> 10.0', '>= 10.0.1'
+gem 'diffy', '~> 3.2', '>= 3.2.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

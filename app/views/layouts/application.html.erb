@@ -3,13 +3,21 @@
   <head>
     <title>Wiki</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="assets/js/uikit.js"></script>
+    <script src="assets/js/uikit-icons.js"></script>
   </head>
-
+  
   <body>
+    <div class="section-hero uk-background-blend-color-burn uk-background-top-center uk-background-cover uk-section-large1 cta" style="background-image: url(app/assets/images/city.jpg) >
+      <%= render "shared/application_nav" %>
+      <% if current_page?(categories_path) || current_page?('/')  %>
+       <%= render "shared/jumbotron" %>
+      <%end%>
+    </div>
     <%= yield %>
     <%= alerts%>
+    <%= render "shared/footer" %>
   </body>
 </html>

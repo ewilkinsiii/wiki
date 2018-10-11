@@ -1,0 +1,35 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <div class='row mt'>
+      <div class='col-sm-12'>
+        <h2><%= "Diff between Version #{@version.index} and Current Version" %></h2>
+        <style><%= Diffy::CSS %></style>
+        <div class='well diff'>
+          <p>
+            <strong>Name:</strong>
+            <%= diff(@version.reify.name, @article.name) %>
+          </p>
+          <p>
+            <strong>Describtion:</strong>
+            <%= diff(@version.reify.description, @article.description) %>
+          </p>
+          <p>
+            <strong>Content:</strong>
+            <%= diff(@version.reify.body, @article.body) %>
+          </p>
+           <p>
+            <strong>Tags:</strong>
+            <%= diff(@version.reify.tag_list, @article.tag_list) %>
+          </p>
+        </div>
+        <p>
+        <%= "Version authored by #{find_version_author_name(@version)} on #{@version.created_at.strftime("%m-%d-%Y")} by '#{@version.event.humanize}'." %>
+        </p>
+      </div>
+    </div>
+    <div class='fr'>
+      <%= link_to 'Back',  edit_category_article_path(@category, @article), class: 'btn btn-danger' %>
+      <%= link_to 'Rollback', rollback_category_article_version_path(@category, @article, @version), class: 'btn btn-primary', method: 'PATCH' %>
+    </div>
+  </div>
+</div>
