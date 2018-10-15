@@ -10,12 +10,25 @@
   </head>
   
   <body>
-    <div class="section-hero uk-background-blend-color-burn uk-background-top-center uk-background-cover uk-section-large1 cta" style="background-image: url(app/assets/images/city.jpg) >
-      <%= render "shared/application_nav" %>
-      <% if current_page?(categories_path) || current_page?('/')  %>
-       <%= render "shared/jumbotron" %>
-      <%end%>
-    </div>
+    <% if !current_page?(new_user_session_path)%>
+      <div class="section-hero uk-background-blend-color-burn uk-background-top-center uk-background-cover uk-section-large1 cta" style="background-image: url(app/assets/images/city.jpg)" >
+        <%= render "shared/application_nav" %>
+        <% if current_page?(group_path(@group))%>
+         <%= render "shared/jumbotron" %>
+        <%end%>
+      </div>
+    <%else%>
+      <div class="section-hero uk-background-blend-color-burn uk-background-top-center uk-background-cover uk-section-large1 cta" style="background-image: url(app/assets/images/city.jpg)" >
+        <nav class="uk-navbar-container uk-margin uk-navbar-transparent uk-light"></nav>
+        <div class="uk-container">
+          <div uk-navbar>
+            <div class="uk-navbar-left">
+              <%= link_to "KnowledgeBase", "", class:"uk-navbar-item uk-logo uk-text-uppercase uk-margin-small-right" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
     <%= yield %>
     <%= alerts%>
     <%= render "shared/footer" %>

@@ -1,5 +1,5 @@
 <aside class="widget widget_search">
-  <%= form_tag search_categories_path(@category), method: :get, class: "navbar-form navbar-center", role: "search" do %>
+  <%= form_tag search_group_categories_path(@group, @category), method: :get, class: "navbar-form navbar-center", role: "search" do %>
     <p>
     <%= hidden_field_tag "category_id", @category.id %>
     <%=text_field_tag :search, params[:search], class: "form-control", placeholder: "Hit enter to search..." %>

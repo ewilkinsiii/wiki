@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :set_group
   before_action :set_category
   before_action :set_paper_trail_whodunnit
   before_action :set_article, only: [:show, :edit, :update, :destroy]
@@ -70,6 +71,10 @@ class ArticlesController < ApplicationController
   end
   
   private
+  
+  def set_group
+    @group = Group.friendly.find(params[:group_id])
+  end
   
   def set_category
     @category = Category.friendly.find(params[:category_id])

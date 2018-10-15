@@ -31,7 +31,7 @@
         <h3>Recent Articles</h3>
         <ul class="uk-list uk-list-large uk-list-divider link-icon-right">
           <% @recent_articles.each do |article|%>
-            <li><%= link_to article.name, group_category_article_path(@group, Category.find(article.category_id), article)%></li>
+            <li><%= link_to article.name, group_category_article_path(Category.find(article.category_id), article)%></li>
           <%end%>
         </ul>
       </div>

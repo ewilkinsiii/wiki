@@ -4,8 +4,8 @@
       <div class="uk-width-2-3@m">
         <ul class="uk-breadcrumb uk-visible@m">
           <li><%= link_to "Home", root_path %> </li>
-          <li><%= link_to @category.name.capitalize, category_path(@category)%></li>
-          <li><span><%= link_to @article.name, category_article_path(@category, @article)%></span></li>
+          <li><%= link_to @category.name.capitalize, group_category_path(@group, @category)%></li>
+          <li><span><%= link_to @article.name, group_category_article_path(@group, @category, @article)%></span></li>
         </ul>
       </div>
       <%= render 'searchbar' %>
@@ -22,8 +22,9 @@
     Created By: <%= @article.user.name %>
     <%= distance_of_time_in_words(@article.created_at, Time.now)%> days ago
     <br>Updated <%= distance_of_time_in_words(@article.updated_at, Time.now)%> days ago
-    <%= link_to fa_icon("pencil-square-o"), edit_category_article_path(@category, @article), class: "edit", style: "color: #12B629" %>
-    <%= link_to fa_icon("trash"), category_article_path(@category, @article), method: :delete, data: {confirm: "Are you sure you want ro delete this post"}, class: "trash", style: "color: red" %>
+    <%= link_to fa_icon("pencil-square-o"), edit_group_category_article_path(@group, @category, @article), class: "edit", style: "color: #12B629" %>
+    <%= link_to fa_icon("trash"), group_category_article_path(@group, @category, @article), method: :delete, data: {confirm: "Are you sure you want ro delete this post"}, class: "trash", style: "color: red" %>
+    <p></p>
     <a href="#" class="uk-button uk-button-outline-primary uk-button-small uk-visible@m">Follow</a>      
     
     
@@ -52,8 +53,8 @@
         <td><%= version.created_at %></td>
         <td><%= find_version_author_name(version) %></td>
         <td><%= version.event.humanize %></td>
-        <td><%= link_to 'Diff',  diff_category_article_version_path(@category, @article, version) %></td>
-        <td><%= link_to 'Rollback', rollback_category_article_version_path(@category, @article, version), method: 'PATCH' %></td>
+        <td><%= link_to 'Diff',  diff_group_category_article_version_path(@group, @category, @article, version) %></td>
+        <td><%= link_to 'Rollback', rollback_group_category_article_version_path(@group, @category, @article, version), method: 'PATCH' %></td>
       </tr>
     <% end %>
   </tbody>
