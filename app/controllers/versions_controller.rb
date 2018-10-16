@@ -14,7 +14,7 @@ class VersionsController < ApplicationController
     article = @version.reify
     article.user_id = current_user.id
     article.save
-    redirect_to edit_category_article_path(@category, article)
+    redirect_to edit_group_category_article_path(@group, @category, article)
   end
   
   def bringback

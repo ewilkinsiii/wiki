@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
      @article = Article.new(article_params)
     respond_to do |format|
       if @article.save
-        format.html { redirect_to category_article_path(@category, @article), notice: 'Article was successfully created.' }
+        format.html { redirect_to group_category_article_path(@group, @category, @article), notice: 'Article was successfully created.' }
       else
         format.html { render :new }
       end
@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to category_article_path(@category, @article), notice: 'Article was successfully updated.' }
+        format.html { redirect_to group_category_article_path(@group, @category, @article), notice: 'Article was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to category_path(@category), notice: 'Article was Removed.' }
+      format.html { redirect_to group_category_path(@group, @category), notice: 'Article was Removed.' }
     end
   end
   

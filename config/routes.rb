@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   resources :groups, only: [:index, :show] do
     get '/myarticles' => 'users#article'
-    resources :categories do
+    resources :categories, except: [:index] do
       collection do
     		  get 'search'
     	 end
