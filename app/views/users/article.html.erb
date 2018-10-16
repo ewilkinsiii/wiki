@@ -4,7 +4,7 @@
       <div class="uk-width-2-3@m">
         <ul class="uk-breadcrumb uk-visible@m">
           <li><%= link_to "Home", root_path %></li>
-          <li><span><%= current_user.email%></span></li>
+          <li><span><%= current_user.name%></span></li>
         </ul>
       </div>
       <div class="uk-width-1-3@m">
@@ -26,28 +26,15 @@
       <div class="uk-width-3-4@m">
         <article class="uk-article">
           <header>
-            <h1 class="uk-article-title uk-margin-bottom">How to setup payment gateways</h1>
-              <div class="author-box uk-card">
-                <div class="uk-card-header uk-padding-remove">
-                  <div class="uk-grid-small uk-flex-middle  uk-position-relative" uk-grid>
-                    <div class="uk-width-auto">
-                      <img class="uk-border-circle" width="40" height="40" src="assets/img/joshua.jpg">
-                    </div>
-                    <div class="uk-width-expand">
-                        <h5 class="uk-card-title">Joshua Birdman</h5>
-                        <p class="uk-article-meta uk-margin-remove-top">Created: Sep 06, 2016 - Updated: Apr 26, 2017</p>
-                    </div>
-                    <a href="#" class="uk-button uk-button-outline-primary uk-button-small uk-visible@m">Follow</a>
-                  </div>
-                </div>
-              </div>
+            <h1 class="uk-article-title uk-margin-bottom"><%= current_user.name%>'s Authored Articles</h1>
           </header>
           <% @articles.each do |article|%>
-          <h2><%= link_to article.name, category_article_path(Category.find(article.category_id), article) %></h2>
+          <h2><%= link_to article.name, group_category_article_path(@group, Category.find(article.category_id), article) %></h2>
           <h4><%= article.description %></h4>
           Created by: <%= article.user.email %>
           <%end%>
-          <%= link_to 'Back', categories_path, class: "btn btn-primary" %>
+          <%= paginate @articles %>
+          <%= link_to 'Back', group_categories_path, class: "btn btn-primary" %>
         </article>
       </div>
     </div>

@@ -4,7 +4,7 @@
   <% @categories.each do |category|%>
     <div class="col-md-4">
       <div class="card category-box">
-        <%=link_to "#{category.name.capitalize}", category_article_path(:category_name => "#{category.name}"), class: "btn btn-lg btn-send"%> 
+        <%=link_to "#{category.name.capitalize}", group_category_path(@group, :category_name => "#{category.name}"), class: "btn btn-lg btn-send"%> 
       </div>
     </div>
   <%end%>

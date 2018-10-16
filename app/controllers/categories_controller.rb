@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
+  before_action :set_group
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :authorization
   before_action :authenticate_user!
   
   def search
@@ -8,24 +10,10 @@ class CategoriesController < ApplicationController
     end 
   end
   
-  def index
-    @categories = Category.all
-    @recent_articles = Article.order(created_at: :desc).limit(5) 
-    @popular_articles = Article.order(impressions_count: :desc).limit(5)
-    
-    case
-      when params[:category]
-        @categories = Category.where(category_id: params[:category]).page(params[:page]).per(10).latest
-      when params[:tag]
-        @categories = Category.page.tagged_with(params[:tag]).per(5).latest
-      else
-        @categories = Category.all
-    end
-  end
-  
+
   def show
     @id = @category.id
-    @articles = Article.where(category_id: @id).page.per(5)
+    @articles = Article.page.where(category_id: @id).per(5)
   end
   
   def new
@@ -64,6 +52,18 @@ class CategoriesController < ApplicationController
   end
   
   private
+  
+  def authorization
+    category = []
+    category << @category
+    if @group.categories & category == []
+      redirect_to @group, notice: 'You dont have permission to view this category.'
+    end
+  end
+  
+  def set_group
+    @group = Group.friendly.find(params[:group_id])
+  end
   
   def set_category
     @category = Category.friendly.find(params[:id])

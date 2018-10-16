@@ -2,6 +2,7 @@ class VersionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_paper_trail_whodunnit
   before_action :set_category, except: [:bringback]
+  before_action :set_group, except: [:bringback]
   before_action :set_article_and_version, only: [:diff, :rollback, :destroy]
 
   def diff
@@ -13,7 +14,7 @@ class VersionsController < ApplicationController
     article = @version.reify
     article.user_id = current_user.id
     article.save
-    redirect_to edit_category_article_path(@category, article)
+    redirect_to edit_group_category_article_path(@group, @category, article)
   end
   
   def bringback
@@ -34,5 +35,9 @@ class VersionsController < ApplicationController
     
     def set_category
      @category = Category.friendly.find(params[:category_id])
+    end
+    
+    def set_group
+     @group = Group.friendly.find(params[:group_id])
     end
 end

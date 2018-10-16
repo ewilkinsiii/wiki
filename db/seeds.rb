@@ -1,3 +1,8 @@
+
+Group.create!(name: "Test")
+
+puts "1 Group created"
+
 category_list = [
     "blue",
     "red",
@@ -12,14 +17,14 @@ end
 
 puts "5 Categories created"
 
-User.create!(email: "test@test.com",
-            password: "asdfasdf",
-            password_confirmation: "asdfasdf",
-            first_name: "Test",
-            last_name: "User"
+User.create!(email: "ewilkinsiii@gmail.com",
+            password: "password",
+            password_confirmation: "password",
+            first_name: "Eugene",
+            last_name: "Wilkins"
              )
 
-puts "1 Users created"
+puts "1 User created"
 
 10.times do |article|
   Article.create!(
@@ -34,3 +39,10 @@ puts "1 Users created"
     )
 end
 puts "10 Articles created"
+
+UserGroup.create!(user_id: 1, group_id: 1)
+puts "1 user added to Test group"
+
+GroupCategory.create!(group_id: 1, category_id: 3)
+GroupCategory.create!(group_id: 1, category_id: 4)
+puts "2 categories added to Test group"

@@ -3,7 +3,7 @@
     <div class="uk-child-width-1-3@s uk-grid-match uk-grid-medium uk-text-center" uk-grid>
       <% @categories.each do |category|%>
         <div>
-          <%=link_to "#{category.name.capitalize}", category_path(category), class: "box uk-border-rounded"%> 
+          <%=link_to "#{category.name.capitalize}", group_category_path(@group, category), class: "box uk-border-rounded"%> 
         </div>
       <%end%>
     </div>
@@ -23,7 +23,7 @@
         <h3>Popular Articles</h3>
         <ul class="uk-list uk-list-large uk-list-divider link-icon-right">
           <% @popular_articles.each do |article|%>
-            <li><%= link_to article.name, category_article_path(Category.find(article.category_id), article)%></li>
+            <li><%= link_to article.name, group_category_article_path(@group, Category.find(article.category_id), article)%></li>
           <%end%>
         </ul>
       </div>
@@ -31,7 +31,7 @@
         <h3>Recent Articles</h3>
         <ul class="uk-list uk-list-large uk-list-divider link-icon-right">
           <% @recent_articles.each do |article|%>
-            <li><%= link_to article.name, category_article_path(Category.find(article.category_id), article)%></li>
+            <li><%= link_to article.name, group_category_article_path(Category.find(article.category_id), article)%></li>
           <%end%>
         </ul>
       </div>
