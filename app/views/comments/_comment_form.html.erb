@@ -1,0 +1,14 @@
+<div class="reply uk-margin-medium-top border-top padding-top">
+  <h3 class="uk-margin-medium-bottom">Leave a Comment</h3>
+  <%= form_for @comment, url: '#' do |f| %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.text_area :content, class: 'form-control', placeholder: "Post a Comment", rows: "5" %>
+        </div>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  <%end%>
+</div>

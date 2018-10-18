@@ -6036,3 +6036,66 @@ input.uk-form-width-xsmall{width:50px}select.uk-form-width-xsmall{
 .footer{
 	position: fixed; bottom: 0
 }
+
+.page-item.active .page-link{
+	z-index: 1;
+  color: #fff;
+  background-color: #4e2a84;
+  border-color: #4e2a84;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #4e2a84;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #4e2a84;
+    border-color: #4e2a84;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #4e2a84;
+    background-color: #fff;
+    border-color: #4e2a84; /*set the color you want here*/
+}
+
+.btn-danger {
+	color: #dc3545;
+    background-color: #fff;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545; /*set the color you want here*/
+}
+
+
+.btn-success {
+	color: #28a745;
+    background-color: #fff;
+    border-color: #28a745;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open>.dropdown-toggle.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745; /*set the color you want here*/
+}
+
+.section-hero {
+    padding-top: .01em;
+}
+
+.comment-attribution{
+	margin-top: 1em;
+}

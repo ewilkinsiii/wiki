@@ -33,8 +33,7 @@ gem 'rails_admin', '~> 1.4', '>= 1.4.2'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'paper_trail', '~> 10.0', '>= 10.0.1'
 gem 'diffy', '~> 3.2', '>= 3.2.1'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 4.0', '>= 4.0.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

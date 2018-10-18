@@ -27,8 +27,10 @@ class ArticlesController < ApplicationController
   end
   
   def show
-     impressionist(@article, "message...")
-     @versions =@article.versions.order('created_at DESC')
+    @article = Article.includes(:comments).friendly.find(params[:id])
+    @comment = Comment.new
+    impressionist(@article, "message...")
+    @versions =@article.versions.order('created_at DESC')
   end
   
   def new

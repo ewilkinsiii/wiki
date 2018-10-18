@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :articles
   has_many :user_groups
   has_many :groups, through: :user_groups
-  
+  has_many :comments
+  belongs_to :role
   def name
    if self.first_name.nil?
      " "

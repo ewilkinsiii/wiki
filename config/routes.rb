@@ -29,5 +29,6 @@ Rails.application.routes.draw do
       patch :bringback  # <= and that
     end
   end
+  mount ActionCable.server => '/cable'
   root to: "groups#index"
 end

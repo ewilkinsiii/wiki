@@ -199,6 +199,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
+    redis (4.0.2)
     remotipart (1.4.2)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -281,6 +282,7 @@ DEPENDENCIES
   rails (~> 5.0.6)
   rails_admin (~> 1.4, >= 1.4.2)
   redcarpet (~> 3.4)
+  redis (~> 4.0, >= 4.0.2)
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

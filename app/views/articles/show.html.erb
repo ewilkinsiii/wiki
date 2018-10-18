@@ -79,39 +79,26 @@
           <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
         </header>
         <div class="uk-comment-body">
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+          <div id="comments" data-article-id="<%= @article.id%>">
+            <%= render @article.comments %>
+           </div>
         </div>
       </article>
     </li>
 
     <div class="reply uk-margin-medium-top border-top padding-top">
       <h3 class="uk-margin-medium-bottom">Leave a Comment</h3>
-      <form>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <input class="form-control" type="text" placeholder="First Name">
-            </div>
-          </div>
-          
-          <div class="col-md-6">
-            <div class="form-group">
-              <input class="form-control" type="text" placeholder="Last Name">
-            </div>
-          </div>
-        </div>
-        
+      <%= form_for @comment, url: '#' do |f| %>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Enter comment here ...."></textarea>
+              <%= f.text_area :content, class: 'form-control', placeholder: "Post a Comment", rows: "5" %>
             </div>
           </div>
         </div>
         
-        <button type="submit" class="uk-button uk-button-primary uk-width-1-1 uk-width-auto@s">Submit</button>
-      </form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      <%end%>
     </div>
  </div>
 </div>
