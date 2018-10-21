@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181018172033) do
+ActiveRecord::Schema.define(version: 20181021181722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(version: 20181018172033) do
     t.integer  "status",            default: 0
     t.integer  "user_id"
     t.integer  "category_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "slug"
     t.datetime "deleted_at"
     t.integer  "impressions_count", default: 0
+    t.boolean  "root",              default: false
     t.index ["category_id"], name: "index_articles_on_category_id", using: :btree
     t.index ["deleted_at"], name: "index_articles_on_deleted_at", using: :btree
     t.index ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
