@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
   
   def article
-    @articles = Article.page.where(user_id: current_user.id).per(5)
+    @articles = Article.where(user_id: current_user.id).page(params[:page]).per(5)
   end
   
   def set_group

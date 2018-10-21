@@ -24,9 +24,13 @@
           <% @articles.each do |article|%>
           <h2><%= link_to article.name, group_category_article_path(@group, @category, article) %></h2>
           <h4><%= article.description %></h4>
+          <% if !article.tag_list.empty? %>
+            <div class="article-tags"><%= fa_icon "tags"%> <%= raw(article.tag_list { |t| t }.join(' ')) %></div>
+          <%end%>
           Created by: <%= article.user.email %>
           <hr>
           <%end%>
+          <br>
           <%= paginate @articles %>
         </article>
       </div>

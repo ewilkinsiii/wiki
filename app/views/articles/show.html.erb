@@ -19,6 +19,9 @@
     <h2><%= @article.name %></h2>
     <h4><%= @article.description %></h4>
     <p><%= markdown @article.body %></p>
+    <% if !@article.tag_list.empty? %>
+      <div class="article-tags"><%= fa_icon "tags"%> <%= raw(@article.tag_list { |t| t }.join(' ')) %></div>
+    <%end%>
     Created By: <%= @article.user.name %>
     <%= distance_of_time_in_words(@article.created_at, Time.now)%> days ago
     <br>Updated <%= distance_of_time_in_words(@article.updated_at, Time.now)%> days ago
@@ -29,76 +32,35 @@
     
     
     <%= @versions.length  %> Versions Created
-    <ul>
-      
-    <h2>Previous Versions</h2>
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Index</th>
-      <th>Date</th>
-      <th>Author</th>
-      <th>Event</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @versions.each do |version| %>
-      <tr>
-        <td><%= version.index %></td>
-        <td><%= version.created_at %></td>
-        <td><%= find_version_author_name(version) %></td>
-        <td><%= version.event.humanize %></td>
-        <td><%= link_to 'Diff',  diff_group_category_article_version_path(@group, @category, @article, version) %></td>
-        <td><%= link_to 'Rollback', rollback_group_category_article_version_path(@group, @category, @article, version), method: 'PATCH' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<div class="uk-margin-medium-top border-top padding-top">
-  <h3 class="uk-margin-medium-bottom">Comments</h3>
-  <ul class="uk-comment-list">
-    <li>
-      <article class="uk-comment uk-visible-toggle">
-        <header class="uk-comment-header uk-position-relative">
-          <div class="uk-grid-medium uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-              <img class="uk-comment-avatar uk-border-circle" src="http://www.valleyroadwines.com/wp-content/uploads/2013/04/Anon-Person-300x300.png" width="70" height="70" alt="">
+    <div class="uk-margin-medium-top border-top padding-top">
+      <h3 class="uk-margin-medium-bottom">Comments</h3>
+      <ul class="uk-comment-list">
+        <li>
+          <article class="uk-comment uk-visible-toggle">
+            <div class="uk-comment-body">
+              <div id="comments" data-article-id="<%= @article.id%>">
+                <%= render @article.comments %>
+               </div>
             </div>
-            <div class="uk-width-expand">
-              <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Ashley Winslow</a></h4>
-              <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+          </article>
+        </li>
+      </ul>
+  
+      <div class="reply uk-margin-medium-top padding-top">
+        <h3 class="uk-margin-medium-bottom">Leave a Comment</h3>
+        <%= form_for @comment, url: '#' do |f| %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.text_area :content, class: 'form-control', placeholder: "Post a Comment", rows: "5" %>
+              </div>
             </div>
           </div>
-          <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
-        </header>
-        <div class="uk-comment-body">
-          <div id="comments" data-article-id="<%= @article.id%>">
-            <%= render @article.comments %>
-           </div>
-        </div>
-      </article>
-    </li>
-
-    <div class="reply uk-margin-medium-top border-top padding-top">
-      <h3 class="uk-margin-medium-bottom">Leave a Comment</h3>
-      <%= form_for @comment, url: '#' do |f| %>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <%= f.text_area :content, class: 'form-control', placeholder: "Post a Comment", rows: "5" %>
-            </div>
-          </div>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-      <%end%>
+          
+          <button type="submit" class="btn btn-primary myspace">Submit</button>
+        <%end%>
+      </div>
     </div>
- </div>
+  </div>
 </div>

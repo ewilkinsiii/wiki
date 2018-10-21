@@ -6,14 +6,14 @@ class CategoriesController < ApplicationController
   
   def search
     if params[:search]
-      @articles = Article.page.where('name ILIKE ?', "%" + params[:search] + "%" ).where(category_id: params[:category_id]).per(5).latest
+      @articles = Article.page.where('name ILIKE ?', "%" + params[:search] + "%" ).where('slug ILIKE ?', "%" + params[:search] + "%").per(5).latest 
     end 
   end
   
 
   def show
     @id = @category.id
-    @articles = Article.page.where(category_id: @id).per(5)
+    @articles = Article.where(category_id: @id).page(params[:page]).per(5)
   end
   
   def new

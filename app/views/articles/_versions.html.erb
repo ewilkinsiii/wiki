@@ -1,0 +1,28 @@
+<h2>Previous Versions</h2>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Date</th>
+      <th>Author</th>
+      <th>Event</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= version.index %></td>
+        <td><%= version.created_at %></td>
+        <td><%= find_version_author_name(version) %></td>
+        <td><%= version.event.humanize %></td>
+        <td><%= link_to 'Diff',  diff_group_category_article_version_path(@group, @category, @article, version) %></td>
+        <td><%= link_to 'Rollback', rollback_group_category_article_version_path(@group, @category, @article, version), method: 'PATCH' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

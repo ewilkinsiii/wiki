@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_category
   before_action :set_paper_trail_whodunnit
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:search]
   before_action :authenticate_user!
   impressionist actions: [:show], unique: [:session_hash]
   
@@ -49,6 +50,7 @@ class ArticlesController < ApplicationController
   end
   
   def edit
+    @versions =@article.versions.order('created_at DESC')
   end
   
   def update
@@ -97,6 +99,10 @@ class ArticlesController < ApplicationController
                                     :tag_list,
                                     :status
                                   )
+  end
+  
+  def set_topic
+    @topics= Topic.with_articles
   end
   
 end

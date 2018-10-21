@@ -15,6 +15,6 @@
 //= require jquery_ujs
 //= require gritter
 //= require cable
-//= require md_simple_editor
 //= require turbolinks
+//= require md_simple_editor
 //= require_tree .
