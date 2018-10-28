@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  get 'tags/:tag', to: 'category#show', as: :tag
   
   resources :versions, only: [] do
     member do

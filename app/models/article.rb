@@ -8,6 +8,10 @@ class Article < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_many :comments
+  has_many :article_uploads, dependent: :destroy
+  accepts_nested_attributes_for :article_uploads,
+                                allow_destroy: true,
+                                reject_if: lambda { |attrs| attrs['attachment'].blank?}
   has_paper_trail class_name:'Version'
   
   validates_presence_of :name, :description, :body
