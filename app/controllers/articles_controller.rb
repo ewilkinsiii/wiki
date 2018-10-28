@@ -97,7 +97,8 @@ class ArticlesController < ApplicationController
                                     :user_id,
                                     :category_id,
                                     :tag_list,
-                                    :status
+                                    :status,
+                                    article_uploads_attributes: [:id, :attachment, :_destroy]
                                   )
   end
   

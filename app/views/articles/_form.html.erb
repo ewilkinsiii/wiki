@@ -42,7 +42,20 @@
     <%= f.radio_button :status, 'published' %>
     <%= f.label :status, "Published"%>
   </div>
+  
+  <h2>Addtional Attachments:</h2>
+  <div>
+    <%= f.fields_for :article_uploads do |article_uploads_form|%>
+      <%= render 'article_upload_fields', f: article_uploads_form %>
+    <%end%>
+  </div>
+  
+  <div>
+    <%= link_to_add_association 'Add Attachment', f, :article_uploads, class: "btn btn-primary" %>
+  </div>
+      
   <%= f.hidden_field :user_id, value: current_user.id %>
+  <br>
   <div class="form-group">
     <%= f.submit "Submit", class: 'btn btn-primary' %>
   </div>

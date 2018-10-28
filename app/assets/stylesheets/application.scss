@@ -6106,3 +6106,28 @@ input.uk-form-width-xsmall{width:50px}select.uk-form-width-xsmall{
 .myspace{
 	margin-bottom: 1em;
 }
+
+.article-tags {
+    font-family: "Poppins", Arial, serif;
+    margin: 30px 0 0;
+}
+
+.article-tags a {
+    background: #f2f2f2;
+    position: relative;
+    display: inline-block;
+    padding: 2px 15px;
+    margin: 5px 10px 5px 0;
+    height: 26px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #4e2a84;
+    border-radius: 2px;
+}
+
+.article-tags a:hover {
+    background: #4e2a84;
+    color: #fff;
+}

@@ -11,10 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap
 //= require jquery_ujs
+//= require jquery-ui
+//= require cocoon
 //= require gritter
 //= require cable
 //= require turbolinks
 //= require md_simple_editor
 //= require_tree .
+//= require bootstrap

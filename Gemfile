@@ -34,6 +34,12 @@ gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'paper_trail', '~> 10.0', '>= 10.0.1'
 gem 'diffy', '~> 3.2', '>= 3.2.1'
 gem 'redis', '~> 4.0', '>= 4.0.2'
+gem 'carrierwave', '~> 1.2', '>= 1.2.3'
+gem 'mini_magick', '~> 4.9', '>= 4.9.2'
+gem 'carrierwave-aws', '~> 1.3'
+gem 'cocoon', '~> 1.2', '>= 1.2.12'
+gem 'dotenv-rails', '~> 2.5'
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

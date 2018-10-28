@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181021181722) do
+ActiveRecord::Schema.define(version: 20181021234831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_uploads", force: :cascade do |t|
+    t.text     "attachment"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_uploads_on_article_id", using: :btree
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
@@ -184,6 +192,7 @@ ActiveRecord::Schema.define(version: 20181021181722) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
+  add_foreign_key "article_uploads", "articles"
   add_foreign_key "articles", "categories"
   add_foreign_key "articles", "users"
   add_foreign_key "categories", "users"

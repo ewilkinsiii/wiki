@@ -1,0 +1,8 @@
+<div class="form-group nested-fields">
+  <label class="btn btn-primary">
+    <%= fa_icon "upload"%> Upload Attachment <%= f.file_field :attachment, style: 'display:none;'%>
+  </label>
+  <label class="btn btn-danger">
+  <%= link_to_remove_association 'Remove Image', f , class: 'remove'%>
+  </label>
+</div>
