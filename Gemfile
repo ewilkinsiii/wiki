@@ -40,6 +40,8 @@ gem 'carrierwave-aws', '~> 1.3'
 gem 'cocoon', '~> 1.2', '>= 1.2.12'
 gem 'dotenv-rails', '~> 2.5'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'slack-notifier', '~> 2.3', '>= 2.3.2'
+gem 'acts_as_votable', '~> 0.11.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_group
   before_action :set_category
   before_action :set_paper_trail_whodunnit
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :set_topic, only: [:search]
   before_action :authenticate_user!
   impressionist actions: [:show], unique: [:session_hash]
@@ -72,6 +72,16 @@ class ArticlesController < ApplicationController
   
   def deleted
     @articles = Version.where(event: 'destroy')
+  end
+  
+  def follow 
+    @article.upvote_by current_user
+    redirect_to :back
+  end  
+
+  def unfollow
+    @article.downvote_by current_user
+    redirect_to :back
   end
   
   private
