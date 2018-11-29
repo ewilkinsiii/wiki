@@ -119,12 +119,6 @@ ActiveRecord::Schema.define(version: 20181021234831) do
     t.index ["user_id"], name: "index_impressions_on_user_id", using: :btree
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.string   "taggable_type"
@@ -173,13 +167,6 @@ ActiveRecord::Schema.define(version: 20181021234831) do
     t.index ["role_id"], name: "index_users_on_role_id", using: :btree
   end
 
-  create_table "users_categories", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "category_id"
-    t.index ["category_id"], name: "index_users_categories_on_category_id", using: :btree
-    t.index ["user_id"], name: "index_users_categories_on_user_id", using: :btree
-  end
-
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",   null: false
     t.integer  "item_id",     null: false
@@ -198,6 +185,4 @@ ActiveRecord::Schema.define(version: 20181021234831) do
   add_foreign_key "categories", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
-  add_foreign_key "users_categories", "categories"
-  add_foreign_key "users_categories", "users"
 end
