@@ -54,8 +54,19 @@ class ArticlesController < ApplicationController
   end
   
   def update
+    @following = @article.votes_for.up.by_type(User).voters
     respond_to do |format|
       if @article.update(article_params)
+        @following.each do |f|
+          notifier = Slack::Notifier.new f.slackurl 
+          @user = User.find(@article.versions.last.whodunnit)
+          @message = "
+          The article:  #{@article.name} 
+          was updated by: #{@user.name}
+          click [here](http://localhost:3000#{group_category_article_path(@group, @category, @article)}) to view the article
+          "
+          notifier.ping Slack::Notifier::Util::LinkFormatter.format(@message)
+        end
         format.html { redirect_to group_category_article_path(@group, @category, @article), notice: 'Article was successfully updated.' }
       else
         format.html { render :edit }
