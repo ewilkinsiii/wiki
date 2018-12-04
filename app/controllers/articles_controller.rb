@@ -58,14 +58,18 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update(article_params)
         @following.each do |f|
-          notifier = Slack::Notifier.new f.slackurl 
+          notifier = Slack::Notifier.new f.slack_url
           @user = User.find(@article.versions.last.whodunnit)
           @message = "
-          The article:  #{@article.name} 
-          was updated by: #{@user.name}
-          click [here](http://localhost:3000#{group_category_article_path(@group, @category, @article)}) to view the article
+          The article:  #{@article.name} was updated by: #{@user.name} click [here](http://localhost:3000#{group_category_article_path(@group, @category, @article)}) to view the article
           "
-          notifier.ping Slack::Notifier::Util::LinkFormatter.format(@message)
+          a_ok_note = {
+            fallback: "Everything looks peachy",
+            text: Slack::Notifier::Util::LinkFormatter.format(@message),
+            color: "#4e2a84",
+            mrkdwn: true
+          }
+          notifier.ping text: "Hello #{f.first_name} Ignore this message", attachments: [a_ok_note]
         end
         format.html { redirect_to group_category_article_path(@group, @category, @article), notice: 'Article was successfully updated.' }
       else
