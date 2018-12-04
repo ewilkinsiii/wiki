@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     		  get 'search'
     		  get :deleted
     	  end
+    	  member do
+          get :toggle_status
+          put :follow
+          put :unfollow
+        end
     	  resources :versions, only: [:destroy] do
            member do
             get :diff, to: 'versions#diff'
