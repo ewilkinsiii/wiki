@@ -28,8 +28,11 @@
     <%= link_to fa_icon("pencil-square-o"), edit_group_category_article_path(@group, @category, @article), class: "edit", style: "color: #12B629" %>
     <%= link_to fa_icon("trash"), group_category_article_path(@group, @category, @article), method: :delete, data: {confirm: "Are you sure you want ro delete this post"}, class: "trash", style: "color: red" %>
     <p></p>
-    <a href="#" class="uk-button uk-button-outline-primary uk-button-small uk-visible@m">Follow</a>      
-    
+    <% if current_user.voted_up_on? @article %>
+      <%= link_to 'Unfollow', unfollow_group_category_article_path(@group, @category, @article), method: :put, remote: :true, class: "btn btn-primary" %>      
+    <%else%>
+      <%= link_to 'Follow', follow_group_category_article_path(@group, @category, @article), method: :put, remote: :true,class: "btn btn-primary" %>      
+    <%end%>
     
     <%= @versions.length  %> Versions Created
 

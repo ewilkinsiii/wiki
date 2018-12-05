@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_group
   before_action :set_category
   before_action :set_paper_trail_whodunnit
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :set_topic, only: [:search]
   before_action :authenticate_user!
   impressionist actions: [:show], unique: [:session_hash]
@@ -54,8 +54,23 @@ class ArticlesController < ApplicationController
   end
   
   def update
+    @following = @article.votes_for.up.by_type(User).voters
     respond_to do |format|
       if @article.update(article_params)
+        @following.each do |f|
+          notifier = Slack::Notifier.new f.slack_url
+          @user = User.find(@article.versions.last.whodunnit)
+          @message = "
+          The article:  #{@article.name} was updated by: #{@user.name} click [here](http://localhost:3000#{group_category_article_path(@group, @category, @article)}) to view the article
+          "
+          a_ok_note = {
+            fallback: "Everything looks peachy",
+            text: Slack::Notifier::Util::LinkFormatter.format(@message),
+            color: "#4e2a84",
+            mrkdwn: true
+          }
+          notifier.ping text: "Hello #{f.first_name} Ignore this message", attachments: [a_ok_note]
+        end
         format.html { redirect_to group_category_article_path(@group, @category, @article), notice: 'Article was successfully updated.' }
       else
         format.html { render :edit }
@@ -72,6 +87,16 @@ class ArticlesController < ApplicationController
   
   def deleted
     @articles = Version.where(event: 'destroy')
+  end
+  
+  def follow 
+    @article.upvote_by current_user
+    redirect_to :back
+  end  
+
+  def unfollow
+    @article.downvote_by current_user
+    redirect_to :back
   end
   
   private
