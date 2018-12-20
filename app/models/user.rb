@@ -1,4 +1,13 @@
 class User < ApplicationRecord
+  ############################################################################################
+  ## PeterGate Roles                                                                        ##
+  ## The :user role is added by default and shouldn't be included in this list.             ##
+  ## The :root_admin can access any page regardless of access settings. Use with caution!   ##
+  ## The multiple option can be set to true if you need users to have multiple roles.       ##
+  petergate(roles: [:admin], multiple: false)                                          ##
+  ############################################################################################ 
+ 
+
   acts_as_paranoid
   acts_as_voter
   # Include default devise modules. Others available are:
@@ -9,7 +18,6 @@ class User < ApplicationRecord
   has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :comments
-  belongs_to :role
   has_many :article_uploads, through: :articles
   def name
    if self.first_name.nil?
