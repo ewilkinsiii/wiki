@@ -26,12 +26,11 @@
                 <%end%>
               <%end%>
             <%end%>
-          <% if current_user %>
-            <li><%= link_to "My Articles", group_myarticles_path(@group) %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-          <%else%>
-            <li><%= link_to  "Login", new_user_session_path %></li>
-          <%end%>
+            <li><%= link_to "My Articles", group_myarticles_path(@group)  if current_user %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete if current_user %></li>
+            <li><%= link_to "Admin", rails_admin_path  if logged_in?(:admin)%></li>
+            <li><%= link_to  "Login", new_user_session_path if !current_user%></li>
+      
         </ul>
         <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" uk-navbar-toggle-icon uk-toggle></a>
       </div>

@@ -9,8 +9,8 @@
         </ul>
       </div>
       <%= render 'searchbar' %>
-    <div class="border-top"></div>
   </div>
+   <div class="border-top"></div>
 </div>
 
 <div class="uk-section">
@@ -20,20 +20,21 @@
     <h4><%= @article.description %></h4>
     <p><%= markdown @article.body %></p>
     <% if !@article.tag_list.empty? %>
-      <div class="article-tags"><%= fa_icon "tags"%> <%= raw(@article.tag_list { |t| t }.join(' ')) %></div>
+      <div class="article-tags"><%= fa_icon "tags"%> <%= raw(@article.tag_list.map { |t| link_to t, tag_path(t) }.join(' '))%> </div>
     <%end%>
     Created By: <%= @article.user.name %>
     <%= distance_of_time_in_words(@article.created_at, Time.now)%> days ago
     <br>Updated <%= distance_of_time_in_words(@article.updated_at, Time.now)%> days ago
-    <%= link_to fa_icon("pencil-square-o"), edit_group_category_article_path(@group, @category, @article), class: "edit", style: "color: #12B629" %>
-    <%= link_to fa_icon("trash"), group_category_article_path(@group, @category, @article), method: :delete, data: {confirm: "Are you sure you want ro delete this post"}, class: "trash", style: "color: red" %>
+    <%= link_to fa_icon("pencil-square-o"), edit_group_category_article_path(@group, @category, @article), class: "edit", style: "color: #12B629" if logged_in?(:admin) || logged_in?(:editor) %>
+    <%= link_to fa_icon("trash"), group_category_article_path(@group, @category, @article), method: :delete, data: {confirm: "Are you sure you want ro delete this post"}, class: "trash", style: "color: red" if logged_in?(:admin) || logged_in?(:editor)  %>
     <p></p>
-    <% if current_user.voted_up_on? @article %>
-      <%= link_to 'Unfollow', unfollow_group_category_article_path(@group, @category, @article), method: :put, remote: :true, class: "btn btn-primary" %>      
-    <%else%>
-      <%= link_to 'Follow', follow_group_category_article_path(@group, @category, @article), method: :put, remote: :true,class: "btn btn-primary" %>      
+    <% if current_user.slack_url.present?%>
+      <% if current_user.voted_up_on? @article %>
+        <%= link_to 'Unfollow', unfollow_group_category_article_path(@group, @category, @article), method: :put, remote: :true, class: "btn btn-primary" %>      
+      <%else%>
+        <%= link_to 'Follow', follow_group_category_article_path(@group, @category, @article), method: :put, remote: :true,class: "btn btn-primary" %>      
+      <%end%>
     <%end%>
-    
     <%= @versions.length  %> Versions Created
 
     <div class="uk-margin-medium-top border-top padding-top">

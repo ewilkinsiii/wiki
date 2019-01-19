@@ -1,6 +1,6 @@
 @import "bootstrap";
 @import "gritter";
-@import "font-awesome";
+@import 'font-awesome';
 @import "pygments";
 
 html{
@@ -6130,4 +6130,18 @@ input.uk-form-width-xsmall{width:50px}select.uk-form-width-xsmall{
 .article-tags a:hover {
     background: #4e2a84;
     color: #fff;
+}
+
+th,
+td {
+  border: 0.125em solid #4e2a84;
+  line-height: 1.5;
+  padding: 0.75em;
+  text-align: left;
+}
+
+.table thead th {
+    vertical-align: bottom;
+	border-bottom: 2px solid #4e2a84;
+	border-top: 2px solid #4e2a84;
 }

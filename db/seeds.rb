@@ -21,7 +21,8 @@ User.create!(email: "ewilkinsiii@gmail.com",
             password: "password",
             password_confirmation: "password",
             first_name: "Eugene",
-            last_name: "Wilkins"
+            last_name: "Wilkins",
+            roles: 'admin'
              )
 
 puts "1 User created"

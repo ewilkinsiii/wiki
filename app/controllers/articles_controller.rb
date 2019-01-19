@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   before_action :set_topic, only: [:search]
   before_action :authenticate_user!
   impressionist actions: [:show], unique: [:session_hash]
+  access user: {except: [:new, :edit, :destroy, :deleted]}, editor: :all, admin: :all
   
   def search
     if params[:search]

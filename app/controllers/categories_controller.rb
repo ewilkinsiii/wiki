@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :authorization
   before_action :authenticate_user!
+  access user: {except: [:destroy]}, editor: :all, admin: :all
   
   def search
     if params[:search]

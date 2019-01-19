@@ -17,6 +17,5 @@
 //= require gritter
 //= require cable
 //= require turbolinks
-//= require md_simple_editor
 //= require_tree .
 //= require bootstrap

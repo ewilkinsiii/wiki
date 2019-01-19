@@ -1,13 +1,17 @@
-<div class="col-sm-8 blog-main">
-  <h1>Edit Article</h1>
-  
-  <%= render 'form', {category: @category, article: @article}  %>
-  
-  <%= link_to 'Show', group_category_article_path(@group, @category, @article), class: "btn btn-success" %> |
-  <%= link_to 'Back', group_category_path(@group, @category), class: "btn btn-danger" %>
-  
-  <% if !@versions.empty?%>
-    <%= render 'versions', {versions: @versions} %>
-  <%end%>
-  
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="col-sm-8 blog-main">
+      <h1>Edit Article</h1>
+      
+      <%= render 'form', {category: @category, article: @article}  %>
+      
+      <%= link_to 'Show', group_category_article_path(@group, @category, @article), class: "btn btn-success" %> |
+      <%= link_to 'Back', group_category_path(@group, @category), class: "btn btn-danger" %>
+      
+      <% if !@versions.empty?%>
+        <%= render 'versions', {versions: @versions} %>
+      <%end%>
+      
+    </div>
+  </div>
 </div>
