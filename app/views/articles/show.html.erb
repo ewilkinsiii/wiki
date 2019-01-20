@@ -1,3 +1,4 @@
+
 <div class="uk-section section-sub-nav uk-padding-remove">
   <div class="uk-container">
     <div uk-grid>
@@ -16,9 +17,9 @@
 <div class="uk-section">
   <div class="uk-container">
 
-    <h2><%= @article.name %></h2>
+    <h2 id="title"><%= @article.name %> <%= link_to fa_icon("link"), group_category_article_path(@group, @category, @article,  anchor: "title")%></h2>
     <h4><%= @article.description %></h4>
-    <p><%= markdown @article.body %></p>
+    <p id="content"><%= markdown @article.body %></p>
     <% if !@article.tag_list.empty? %>
       <div class="article-tags"><%= fa_icon "tags"%> <%= raw(@article.tag_list.map { |t| link_to t, tag_path(t) }.join(' '))%> </div>
     <%end%>
