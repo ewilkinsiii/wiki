@@ -22,7 +22,11 @@
             <h1 class="uk-article-title uk-margin-bottom"><%= @category.name.capitalize%> Articles</h1>
           </header>
           <% @articles.each do |article|%>
-          <h2><%= link_to article.name, group_category_article_path(@group, @category, article) %></h2>
+          <h2 id=<%= "article-#{article.id}"%>><%= link_to article.name, group_category_article_path(@group, @category, article) %> 
+            <button class= "clipboard-btn btn btn-primary"  data-clipboard-action="copy" data-clipboard-text=<%=  group_category_path(@group, @category,  anchor: "article-#{article.id}")%>>
+              <%= fa_icon("link")%>
+            </button>
+          </h2>
           <h4><%= article.description %></h4>
           <% if !article.tag_list.empty? %>
             <div class="article-tags"><%= fa_icon "tags"%> <%= raw(article.tag_list.map { |t| link_to t, tag_path(t) }.join(' ')) %></div>
@@ -37,3 +41,19 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){  
+  
+    var clipboard = new Clipboard('.clipboard-btn');
+    clipboard.on('success', function(e) {
+    "You've successfully copied the link"
+  });
+
+  clipboard.on('error', function(e) {
+    // add your custom error code here.
+  });
+      
+  });
+
+  </script>

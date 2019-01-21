@@ -5,7 +5,8 @@
         <img class="uk-comment-avatar uk-border-circle" src="http://www.valleyroadwines.com/wp-content/uploads/2013/04/Anon-Person-300x300.png" width="70" height="70" alt="">
       </div>
       <div class="uk-width-expand">
-        <h4 class="uk-comment-title uk-margin-remove name"><%= comment.user.name %></h4>
+        <h4 class="uk-comment-title uk-margin-remove name"><%= comment.user.name %> 
+         </h4>
         <div class="comment-attribution">
           Comment posted </span> <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago
         </div>
@@ -14,7 +15,7 @@
   </div>
   
   <div class="col-md-8">
-      <p><%= comment.content %></p>
+      <p id=<%= "comment-#{comment.id.to_s}"%>><%= comment.content %></p>
   </div>
 </div>
 <hr>

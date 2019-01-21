@@ -1,3 +1,4 @@
+
 <div class="uk-section section-sub-nav uk-padding-remove">
   <div class="uk-container">
     <div uk-grid>
@@ -16,9 +17,13 @@
 <div class="uk-section">
   <div class="uk-container">
 
-    <h2><%= @article.name %></h2>
+    <h2 id="title"><%= @article.name %>
+    <button class= "clipboard-btn btn btn-primary"  data-clipboard-action="copy" data-clipboard-text=<%=  group_category_article_path(@group, @category, @article,  anchor: "title")%>>
+    <%= fa_icon("link")%>
+    </button>
+</h2>
     <h4><%= @article.description %></h4>
-    <p><%= markdown @article.body %></p>
+    <p id="content"><%= markdown @article.body %></p>
     <% if !@article.tag_list.empty? %>
       <div class="article-tags"><%= fa_icon "tags"%> <%= raw(@article.tag_list.map { |t| link_to t, tag_path(t) }.join(' '))%> </div>
     <%end%>
@@ -34,6 +39,10 @@
       <%else%>
         <%= link_to 'Follow', follow_group_category_article_path(@group, @category, @article), method: :put, remote: :true,class: "btn btn-primary" %>      
       <%end%>
+    <%else%>
+      <div class="alert alert-primary" role="alert">
+      Add a Slack URL in order to follow this article
+      </div>
     <%end%>
     <%= @versions.length  %> Versions Created
 
@@ -68,3 +77,20 @@
     </div>
   </div>
 </div>
+
+<script>
+
+$(document).ready(function(){  
+  
+    var clipboard = new Clipboard('.clipboard-btn');
+    clipboard.on('success', function(e) {
+    "You've successfully copied the link"
+  });
+
+  clipboard.on('error', function(e) {
+    // add your custom error code here.
+  });
+      
+  });
+
+  </script>
