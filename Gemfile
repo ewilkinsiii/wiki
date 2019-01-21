@@ -43,6 +43,7 @@ gem 'slack-notifier', '~> 2.3', '>= 2.3.2'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'rails_admin_simplemde', '~> 0.1.0.1'
 gem 'petergate', '~> 2.0', '>= 2.0.1'
+gem 'clipboard-rails', '~> 1.7', '>= 1.7.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
