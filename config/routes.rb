@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
+  devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}, :skip => [:registrations] , :controllers => { registrations: "registrations"}
+  as :user do
+    get 'my_account/edit' => 'registrations#edit', :as => 'edit_user_registration'
+    put 'my_account' => 'registrations#update', :as => 'user_registration'
+    end
   get '/myarticles' => 'users#article'
   
   resources :groups, only: [:index, :show] do

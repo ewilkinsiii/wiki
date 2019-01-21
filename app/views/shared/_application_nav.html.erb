@@ -7,17 +7,19 @@
       </div>
         <div class="uk-navbar-right">
         <ul class="uk-navbar-nav uk-text-uppercase uk-visible@m uk-margin-medium-left">
-          <li><%= link_to "Home", group_path(@group)%></li>
+          <li><%= link_to "Home", groups_path(@group)%></li>
+          <% if !(current_page?(edit_user_registration_path))%>
           <li>
             <li><%= link_to "Categories", group_path(@group)%>
               <div class="uk-navbar-dropdown">
-                <ul class="uk-nav uk-navbar-dropdown-nav">
+                <ul class="uk-nav uk-navbar-dropdown-nav" 
                   <% @group.categories.each do |category|%>
                     <li><%= link_to category.name, group_category_path(@group, category) %></li>
                   <%end%>
                 </ul>
               </div> 
             </li>
+            <%end%>
             <% if !(current_page?(group_categories_path(@group)))%>
               <% if !(current_page?(root_path))%>
                 <% if  !(current_page?(myarticles_path)) && @category.present? %>
@@ -27,6 +29,7 @@
               <%end%>
             <%end%>
             <li><%= link_to "My Articles", group_myarticles_path(@group)  if current_user %></li>
+            <li><%= link_to "User Edit", edit_user_registration_path  if current_user %></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete if current_user %></li>
             <li><%= link_to "Admin", rails_admin_path  if logged_in?(:admin)%></li>
             <li><%= link_to  "Login", new_user_session_path if !current_user%></li>

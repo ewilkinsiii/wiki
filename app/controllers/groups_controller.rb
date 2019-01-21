@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
   def authorization
     group = []
     group << Group.friendly.find(params[:id])
-    if @group & group == []
+    if @group && group == []
       redirect_to @group, notice: 'You dont have permission to view that groups information.'
     end
   end
