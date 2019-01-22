@@ -1,0 +1,34 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <div class='row'>
+        <div class=col-md-8>
+            <h2><%=  current_user.name %>'s Account Info</h2>
+            <hr>
+            <p><span class="user-lable">Name:</span> <%=  current_user.name %></p>
+            <p><span class="user-lable">Email:</span> <%=  current_user.email %></p>
+            <p><span class="user-lable">Slack URL:</span> <%=  current_user.slack_url %></p>
+            <p><span class="user-lable">Roles: </span>
+            <% current_user.roles.each do |role| %>
+                        <%= role%>
+                    <%end%>
+            </p>
+            <%= link_to 'Edit', edit_user_registration_path, class: "btn btn-primary" %>
+            <%= link_to 'View My Articles', group_myarticles_path(@group), class: "btn btn-primary" %>
+            <%= link_to "Back", :back, class: "btn btn-primary" %>
+
+        </div>
+        <div class='col-md-4'>
+            <% @groups.each do |group|%>
+                <h2>Group: <%= group.name %></h2>
+                <hr>
+                Categories: 
+                <ul>
+                <% group.categories.each do |category| %>
+                    <li><%= category.name %> </li>
+                <%end%>
+                </ul>
+            <%end%>
+        </div>
+    </div>
+  </div>
+</div>

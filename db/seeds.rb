@@ -24,8 +24,22 @@ User.create!(email: "ewilkinsiii@gmail.com",
             last_name: "Wilkins",
             roles: 'admin'
              )
+User.create!(email: "editor@darkstarud.com",
+              password: "password",
+              password_confirmation: "password",
+              first_name: "Editor",
+              last_name: "User",
+              roles: 'editor'
+               )
 
-puts "1 User created"
+User.create!(email: "user@darkstarud.com",
+                password: "password",
+                password_confirmation: "password",
+                first_name: "Client",
+                last_name: "User",
+                roles: 'user'
+                 )
+puts "3 User created"
 
 10.times do |article|
   Article.create!(
@@ -42,6 +56,8 @@ end
 puts "10 Articles created"
 
 UserGroup.create!(user_id: 1, group_id: 1)
+UserGroup.create!(user_id: 2, group_id: 1)
+UserGroup.create!(user_id: 3, group_id: 1)
 puts "1 user added to Test group"
 
 GroupCategory.create!(group_id: 1, category_id: 3)

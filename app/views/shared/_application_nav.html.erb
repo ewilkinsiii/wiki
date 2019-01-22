@@ -23,13 +23,12 @@
             <% if !(current_page?(group_categories_path(@group)))%>
               <% if !(current_page?(root_path))%>
                 <% if  !(current_page?(myarticles_path)) && @category.present? %>
-                  <li><%= link_to "Create New Article", new_group_category_article_path(@group, @category) %></li>
-                  <li><%= link_to "Deleted Articles",  deleted_group_category_articles_path(@group, @category, @articles)%></li>
+                  <li><%= link_to "Create New Article", new_group_category_article_path(@group, @category) if logged_in?(:admin) || logged_in?(:editor) %></li>
+                  <li><%= link_to "Deleted Articles",  deleted_group_category_articles_path(@group, @category, @articles)if logged_in?(:admin) || logged_in?(:editor)%> </li>
                 <%end%>
               <%end%>
             <%end%>
-            <li><%= link_to "My Articles", group_myarticles_path(@group)  if current_user %></li>
-            <li><%= link_to "User Edit", edit_user_registration_path  if current_user %></li>
+            <li><%= link_to "My Account", user_registration_path(@group)  if current_user %></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete if current_user %></li>
             <li><%= link_to "Admin", rails_admin_path  if logged_in?(:admin)%></li>
             <li><%= link_to  "Login", new_user_session_path if !current_user%></li>

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}, :skip => [:registrations] , :controllers => { registrations: "registrations"}
   as :user do
     get 'my_account/edit' => 'registrations#edit', :as => 'edit_user_registration'
-    put 'my_account' => 'registrations#update', :as => 'user_registration'
+    put 'my_account/update' => 'registrations#update', :as => 'update_user_registration'
+    get 'my_account' => 'registrations#show', :as => 'user_registration'
     end
   get '/myarticles' => 'users#article'
   

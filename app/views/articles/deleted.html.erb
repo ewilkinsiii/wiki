@@ -10,7 +10,7 @@
           <th>Description</th>
           <th>Deleted by</th>
           <th>At</th>
-          <th colspan="3"></th>
+          <th colspan="3">Bringback</th>
         </tr>
       </thead>
       <tbody>
@@ -28,10 +28,6 @@
       </tbody>
     </table>
     <br>
-    <%= link_to 'Back', group_category_path(@group, @category), class:"uk-button uk-button-outline-primary uk-button-small uk-visible@m" %>
-    <p></p>
-    <%= link_to 'See Deleted Articles',  deleted_group_category_articles_path(@group, @category, @article) %>
-    <br/>
-    <%= link_to 'New Article', new_group_category_article_path(@group, @category, @article) %>
+    <%= link_to "Back", :back, class: "btn btn-primary" %>
   </div>
 </div>
