@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_group
   before_action :set_category
   before_action :set_paper_trail_whodunnit
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :follow, :unfollow, :toggle_status]
   before_action :set_topic, only: [:search]
   before_action :authenticate_user!
   impressionist actions: [:show], unique: [:session_hash]
@@ -98,6 +98,15 @@ class ArticlesController < ApplicationController
   def unfollow
     @article.downvote_by current_user
     redirect_to :back
+  end
+
+  def toggle_status
+    if @article.draft?
+      @article.published!
+    elsif @article.published?
+      @article.draft!
+    end
+    redirect_to group_myarticles_url, notice: 'Article status has been updated.'
   end
   
   private

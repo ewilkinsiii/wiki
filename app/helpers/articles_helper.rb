@@ -10,4 +10,8 @@ module ArticlesHelper
                              include_diff_info: true)
    changes.to_s.present? ? changes.to_s(:html).html_safe : 'No Changes'
   end
+
+  def article_status_color article
+    'color: red;' if article.draft?
+  end
 end

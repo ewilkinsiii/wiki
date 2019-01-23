@@ -22,7 +22,9 @@
             <h1 class="uk-article-title uk-margin-bottom"><%= current_user.name%>'s Authored Articles</h1>
           </header>
           <% @articles.each do |article|%>
-          <h2><%= link_to article.name, group_category_article_path(@group, Category.find(article.category_id), article) %></h2>
+          <h2><%= link_to article.name, group_category_article_path(@group, Category.find(article.category_id), article) %>
+            <%= link_to fa_icon('check-circle'), toggle_status_group_category_article_path(@group, Category.find(article.category_id), article),  style: article_status_color(article)%>
+          </h2>
           <h4><%= article.description %></h4>
           Created by: <%= article.user.email %>
           <%end%>

@@ -1,7 +1,13 @@
-<div class="col-sm-8 blog-main">
-  <h1>Create New Article</h1>
-  
-  <%= render 'form',  {category: @category, article: @article} %>
-  
-  <%= link_to 'Back', group_category_path(@group, @category) , class: "btn btn-danger myspace" %>
+<div class="uk-section">
+  <div class="uk-container">
+
+    <div class="col-sm-8 blog-main">
+      <h1>Create New Article</h1>
+      <hr>
+      
+      <%= render 'form',  {category: @category, article: @article} %>
+      
+      <%= link_to "Back", :back, class: "btn btn-danger myspace" %>
+    </div>
+  </div>
 </div>

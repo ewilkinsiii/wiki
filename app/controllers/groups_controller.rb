@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
     if @groups.count == 1
       redirect_to group_path(@groups[0])
     end
+    @group = @groups[0]
   end
   
   def show
