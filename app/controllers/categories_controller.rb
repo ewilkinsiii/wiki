@@ -1,14 +1,24 @@
 class CategoriesController < ApplicationController
   before_action :set_group
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authorization
+  before_action :authorization, except: [:search, :autocomplete]
   before_action :authenticate_user!
   access user: {except: [:destroy]}, editor: :all, admin: :all
   
   def search
-    if params[:search]
-      @articles = Article.page.where('name ILIKE ?', "%" + params[:search] + "%" ).where('slug ILIKE ?', "%" + params[:search] + "%").per(5).latest 
-    end 
+     search = params[:search].present? ? params[:search] : nil
+    #@articles = Article.page.where('name ILIKE ? OR description ILIKE ? OR body ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%" ).per(5).latest 
+    @articles = Article.search(search)
+  end
+
+  def autocomplete
+    render json: Article.search(params[:query], {
+      fields: ["name", "description", "body"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: {below: 5}
+    }).map(&:name)
   end
   
 

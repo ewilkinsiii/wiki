@@ -26,7 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
 private
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name,  :email, :roles, :slack_url, :password)
+    params.require(:user).permit(:first_name, :last_name,  :email, :roles, :slack_url)
   end
 
   def set_user

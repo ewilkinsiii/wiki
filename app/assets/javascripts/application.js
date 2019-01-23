@@ -18,5 +18,6 @@
 //= require clipboard
 //= require cable
 //= require turbolinks
+//= require typeahead.bundle
 //= require_tree .
 //= require bootstrap

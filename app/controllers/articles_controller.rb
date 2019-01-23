@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
             color: "#4e2a84",
             mrkdwn: true
           }
-          notifier.ping text: "Hello #{f.first_name} Ignore this message", attachments: [a_ok_note]
+          notifier.ping text: "Hello #{f.first_name}", attachments: [a_ok_note]
         end
         format.html { redirect_to group_category_article_path(@group, @category, @article), notice: 'Article was successfully updated.' }
       else

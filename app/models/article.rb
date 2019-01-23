@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+  searchkick word_start: [:name, :description, :body]
   acts_as_paranoid
   is_impressionable :counter_cache => true, :column_name => :impressions_count
   enum status: { draft: 0, published: 1 }
@@ -17,6 +18,13 @@ class Article < ApplicationRecord
   
   validates_presence_of :name, :description, :body
   
+  def search_data
+    {
+      name: name,
+      description: description,
+      body: body
+    }
+  end
   def category_name
     category.try(:slug)
   end
