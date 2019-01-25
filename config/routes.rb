@@ -18,7 +18,8 @@ Rails.application.routes.draw do
       resources :articles do
         collection do
           get 'search'
-    		  get :deleted
+          get :deleted
+          get '/tagged', to: "article#tagged", as: :tagged
     	  end
     	  member do
           get :toggle_status
@@ -34,7 +35,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  get 'tags/:tag', to: 'category#show', as: :tag
   
   resources :versions, only: [] do
     member do

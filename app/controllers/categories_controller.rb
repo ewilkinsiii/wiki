@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
      search = params[:search].present? ? params[:search] : nil
     #@articles = Article.page.where('name ILIKE ? OR description ILIKE ? OR body ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%" ).per(5).latest 
     @articles = Article.search(search)
+    @category = Category.find(params[:category_id])
   end
 
   def autocomplete
@@ -24,7 +25,12 @@ class CategoriesController < ApplicationController
 
   def show
     @id = @category.id
-    @articles = Article.where(category_id: @id).page(params[:page]).per(5)
+    @root = Article.where(root: 1).where(category_id: @id).take(1)
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(5)
+    else
+     @articles = Article.where(category_id: @id).page(params[:page]).per(5)
+    end
   end
   
   def new

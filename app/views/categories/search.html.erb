@@ -1,14 +1,15 @@
-<div class="uk-section section-sub-nav uk-padding-remove">
-  <div class="uk-container">
-    <h1>Articles</h1>
-    
-    
-    <% @articles.each do |article|%>
-      <h2><%= article.name %></h2>
-      <h4><%= article.description %></h4>
-      <p><%= markdown article.body %></p>
-      Created by: <%= article.user.email %>
-    <%end%>
-    <%= paginate @articles %>
+<div class="uk-section uk-section-small uk-padding-remove-bottom section-content">
+  <div class="uk-container uk-position-relative">
+    <div uk-grid>
+      <div class="uk-width-3-4@m">
+        <article class="uk-article">
+          <header>
+            <h1 class="uk-article-title uk-margin-bottom">Search Results for: <%= params[:search] %></h1>
+          </header>
+          <%= render 'shared/articles'%>
+        </article>
+      </div>
+    </div>
+    <%= link_to "Back", :back,  class: "btn btn-primary"%>
   </div>
 </div>
