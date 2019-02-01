@@ -1,15 +1,13 @@
 <% @articles.each do |article|%>
     <h2 id=<%= "article-#{article.id}"%>><%= link_to article.name, group_category_article_path(@group, @category, article) %> 
     <% if !current_page?(search_group_categories_path)%>
-        <button class= "clipboard-btn btn btn-primary"  data-clipboard-action="copy" data-clipboard-text=<%=  group_category_path(@group, @category,  anchor: "article-#{article.id}")%>>
+        <button class= "clipboard-btn btn btn-primary"  data-clipboard-action="copy" data-clipboard-text=<%=  "#{ENV.fetch('APP_URL')}" + group_category_path(@group, @category,  anchor: "article-#{article.id}")%>>
             <%= fa_icon("link")%>
         </button>
     <%end%>
     </h2>
     <h4><%= article.description %></h4>
-    <% if !article.tag_list.empty? %>
-    <div class="article-tags"><%= fa_icon "tags"%> <%= raw(article.tag_list.map { |t| link_to t, tagged_group_category_articles_path(@group, @category, tag: t) }.join(' ')) %></div>
-    <%end%>
+    
     Created by: <%= article.user.email %>
     <hr>
 <%end%>

@@ -17,15 +17,13 @@
   <div class="uk-container">
 
     <h2 id="title"><%= @article.name %>
-    <button class= "clipboard-btn btn btn-primary"  data-clipboard-action="copy" data-clipboard-text=<%=  group_category_article_path(@group, @category, @article,  anchor: "title")%>>
+    <button class= "clipboard-btn btn btn-primary"  data-clipboard-action="copy" data-clipboard-text=<%= "#{ENV.fetch('APP_URL')}" + group_category_article_path(@group, @category, @article,  anchor: "title")%>>
     <%= fa_icon("link")%>
     </button>
 </h2>
     <h4><%= @article.description %></h4>
     <p id="content"><%= markdown @article.body %></p>
-    <% if !@article.tag_list.empty? %>
-      <div class="article-tags"><%= fa_icon "tags"%> <%= raw(@article.tag_list.map { |t| link_to t, tag_path(t) }.join(' '))%> </div>
-    <%end%>
+    
     Created By: <%= @article.user.name %>
     <%= distance_of_time_in_words(@article.created_at, Time.now)%> days ago
     <br>Updated <%= distance_of_time_in_words(@article.updated_at, Time.now)%> days ago

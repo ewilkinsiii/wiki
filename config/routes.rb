@@ -19,7 +19,6 @@ Rails.application.routes.draw do
         collection do
           get 'search'
           get :deleted
-          get '/tagged', to: "article#tagged", as: :tagged
     	  end
     	  member do
           get :toggle_status

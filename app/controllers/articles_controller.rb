@@ -33,14 +33,6 @@ class ArticlesController < ApplicationController
     impressionist(@article, "message...")
     @versions =@article.versions.order('created_at DESC')
   end
-
-  def tagged
-    if params[:tag].present?
-      @articles = Article.tagged_with(params[:tag]).page(params[:page]).per(5)
-    else
-      @articles = Article.all
-    end
-  end
   
   def new
     @article = Article.new
