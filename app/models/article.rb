@@ -1,5 +1,4 @@
 class Article < ApplicationRecord
-  searchkick word_start: [:name, :description, :body]
   acts_as_paranoid
   is_impressionable :counter_cache => true, :column_name => :impressions_count
   enum status: { draft: 0, published: 1 }
@@ -17,6 +16,8 @@ class Article < ApplicationRecord
   has_paper_trail class_name:'Version'
   
   validates_presence_of :name, :description, :body
+  searchkick word: [:name, :description, :body]
+  after_commit :reindex
   
   def search_data
     {

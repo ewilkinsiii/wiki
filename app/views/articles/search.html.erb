@@ -7,6 +7,7 @@
       <h4><%= article.description %></h4>
       <p><%= markdown article.body %></p>
       Created by: <%= article.user.email %>
+      <span class="badge btn-primary"><%= article.category.name%></span><
     <%end%>
     <%= paginate @articles %>
   </div>

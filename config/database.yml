@@ -8,8 +8,8 @@ default: &default
 development:
   <<: *default
   database: wiki_development
-  username: 'postgres'
-  password: 
+  username: 'eugenewilkinsiii'
+  password: 'bluebunny'
   host: localhost
   port: 5432
 
