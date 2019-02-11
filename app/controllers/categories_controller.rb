@@ -7,10 +7,7 @@ class CategoriesController < ApplicationController
   
   def search
      search = params[:search].present? ? params[:search] : nil
-     conditions = {}
-     conditions[:category_id] = params[:category_id] if params[:category_id]
-    #@articles = Article.page.where('name ILIKE ? OR description ILIKE ? OR body ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%" ).per(5).latest 
-    @articles = Article.search( search, boost_where:  conditions , page: params[:page], per_page: 5)
+    @articles = Article.search( search, where:  {category_id: params[:category_id]} , page: params[:page], per_page: 5)
     @category = Category.find(params[:category_id])
   end
 

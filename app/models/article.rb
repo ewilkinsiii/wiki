@@ -16,14 +16,15 @@ class Article < ApplicationRecord
   has_paper_trail class_name:'Version'
   
   validates_presence_of :name, :description, :body
-  searchkick word: [:name, :description, :body]
+  searchkick word: [:name, :description, :body, :category_id]
   after_commit :reindex
   
   def search_data
     {
       name: name,
       description: description,
-      body: body
+      body: body,
+      category_id: category_id
     }
   end
   def category_name
